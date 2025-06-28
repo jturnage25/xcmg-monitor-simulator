@@ -1,0 +1,2 @@
+# xcmg-monitor-simulator
+Simulator

@@ -107,13 +107,12 @@
   </style>
 </head>
 <body>
-
   <!-- Left Panel with Logo and Excavator -->
   <div class="left-panel">
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAADyQe5rAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABFVBMVEX///8AAAD8/Pz4+Pj5+fn09PT39/f7+/v6+vr29vbw8PDv7+/u7u7t7e3s7Ozq6ur... (truncated for brevity)
-    " alt="XCMG Logo" />
-    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD... (truncated for brevity)
-    " alt="XCMG Excavator" />
+    <!-- Placeholder XCMG Logo -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/XCMG_logo.svg/512px-XCMG_logo.svg.png" alt="XCMG Logo" />
+    <!-- Placeholder Excavator Image -->
+    <img src="https://www.xcmg.com/upload/image/202109/1632458123.jpg" alt="XCMG Excavator" />
   </div>
 
   <!-- Monitor Display -->
@@ -130,7 +129,6 @@
     <h3>Info Panel</h3>
     <p>Select a menu item to view details.</p>
   </div>
-
   <script>
     const historyStack = [];
 
@@ -210,189 +208,4 @@
   </script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>XCMG Monitor Simulator</title>
-  <style>
-    body {
-      margin: 0;
-      background: #000;
-      color: #0ff;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
-      padding: 20px;
-    }
 
-    .left-panel {
-      text-align: center;
-    }
-
-    .left-panel img {
-      width: 250px;
-      border: 2px solid #0ff;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    .monitor {
-      background: #111;
-      border: 3px solid #0ff;
-      border-radius: 10px;
-      padding: 20px;
-      width: 500px;
-      min-height: 500px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .monitor-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-
-    .monitor-header button {
-      background: #0ff;
-      color: #000;
-      border: none;
-      padding: 8px 12px;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .screen {
-      flex-grow: 1;
-      background: #000;
-      border: 1px solid #0ff;
-      padding: 15px;
-      overflow-y: auto;
-    }
-
-    .icon-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .icon-button {
-      background: #222;
-      color: #0ff;
-      border: 1px solid #0ff;
-      padding: 10px;
-      border-radius: 8px;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .icon-button:hover {
-      background: #0ff;
-      color: #000;
-    }
-
-    .info-panel {
-      width: 250px;
-      background: #111;
-      border: 2px solid #0ff;
-      border-radius: 10px;
-      padding: 15px;
-    }
-
-    .info-panel h3 {
-      margin-top: 0;
-    }
-
-    .alert-icon {
-      font-size: 20px;
-      margin-right: 8px;
-    }
-
-    .red { color: red; }
-    .yellow { color: yellow; }
-  </style>
-</head>
-<body>
-  <!-- Left Panel with Logo and Excavator -->
-  <div class="left-panel">
-    <!-- Placeholder XCMG Logo -->
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/XCMG_logo.svg/512px-XCMG_logo.svg.png" alt="XCMG Logo" />
-    <!-- Placeholder Excavator Image -->
-    <img src="https://www.xcmg.com/upload/image/202109/1632458123.jpg" alt="XCMG Excavator" />
-  </div>
-
-  <!-- Monitor Display -->
-  <div class="monitor">
-    <div class="monitor-header">
-      <button onclick="goHome()">🏠 Home</button>
-      <button onclick="goBack()">🔙 Back</button>
-    </div>
-    <div id="screen" class="screen"></div>
-  </div>
-
-  <!-- Info Panel -->
-  <div class="info-panel" id="infoPanel">
-    <h3>Info Panel</h3>
-    <p>Select a menu item to view details.</p>
-  </div>
-  <script>
-    const historyStack = [];
-
-    function loadScreen(content, save = true) {
-      if (save) historyStack.push(document.getElementById('screen').innerHTML);
-      document.getElementById('screen').innerHTML = content;
-      document.getElementById('infoPanel').innerHTML = '<h3>Info Panel</h3><p>Select a menu item to view details.</p>';
-    }
-
-    function goBack() {
-      if (historyStack.length > 0) {
-        const last = historyStack.pop();
-        document.getElementById('screen').innerHTML = last;
-      }
-    }
-
-    function goHome() {
-      historyStack.length = 0;
-      loadMainMenu(false);
-    }
-
-    function loadMainMenu(save = true) {
-      const menu = `
-        <h2>Main Menu</h2>
-        <div class="icon-grid">
-          <div class="icon-button" onclick="loadInfoMenu()">📊<br>Information</div>
-          <div class="icon-button" onclick="loadScreen('<h3>Maintenance</h3><p>Service intervals and diagnostics.</p>')">🛠️<br>Maintenance</div>
-          <div class="icon-button" onclick="loadScreen('<h3>Air Conditioner</h3><p>Cabin temperature and fan settings.</p>')">❄️<br>Air Conditioner</div>
-          <div class="icon-button" onclick="loadScreen('<h3>Multimedia</h3><p>FM/AM, USB, AUX controls.</p>')">🎵<br>Multimedia</div>
-          <div class="icon-button" onclick="loadScreen('<h3>Bluetooth</h3><p>Pair devices for calls and media.</p>')">📶<br>Bluetooth</div>
-          <div class="icon-button" onclick="loadScreen('<h3>Settings</h3><p>Language, GPS, software updates.</p>')">⚙️<br>Settings</div>
-        </div>
-      `;
-      loadScreen(menu, save);
-    }
-
-    function loadInfoMenu() {
-      const submenu = `
-        <h3>Information</h3>
-        <div class="icon-grid">
-          <div class="icon-button" onclick="showDetail('operation')">📈<br>Operation Info</div>
-          <div class="icon-button" onclick="requestPassword()">🔐<br>System Info</div>
-          <div class="icon-button" onclick="showDetail('fault')">🚨<br>Fault Info</div>
-        </div>
-      `;
-      loadScreen(submenu);
-    }
-
-    function showDetail(type) {
-      const details = {
-        operation: `<h3>Operation Info</h3><p>Engine Speed: 0 rpm<br>Fuel Level: 75%<br>DEF: 60%</p>`,
-        fault: `
-          <h3>Fault Codes</h3>
-          <ul>
-            <li
